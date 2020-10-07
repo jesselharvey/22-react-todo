@@ -20,16 +20,24 @@ function generateId() {
 export default (state = initialState, action) => {
   // const [activeItem, setActiveItem] = useState(false)
   // console.log(state)
+  // console.log(action.payload)
   switch (action.type) {
     case ADD_LIST_ITEM:
       return {
         ...state,
-        list: [...state.list, { id: generateId(), content: action.payload, active: true }],
+        list: [
+          ...state.list,
+          { id: generateId(), content: action.payload, active: true },
+        ],
       }
     case TOGGLE_LIST_ITEM:
       return {
         ...state,
-        list: state.list.filter((item) => item.id !== action.payload).map(item => item.active)
+        list: state.list.map((item) => {
+          console.log(state)
+          console.log(item.id == action.payload)
+          return item.id == action.payload ? {...item, active: !item.active} : item
+        }),
       }
     case REMOVE_LIST_ITEM:
       return {

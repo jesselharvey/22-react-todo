@@ -8,17 +8,21 @@ export default () => {
   // const [activeItem, setActiveItem] = useState(true)
   // const { example, setExample, exampleAsync, list } = useExample()
 
-  function handleActiveToggle() {
-  // console.log(list.map().filter())
-    toggleItem(list.active == !list.active)
-  // e.preventDefault()
-  // return setActiveItem(!activeItem)
-}
+  function handleActiveToggle(item) {
+    // console.log(list.map().filter())
+    console.log(item)
+    toggleItem(item.id)
+    // e.preventDefault()
+    // return setActiveItem(!activeItem)
+  }
 
-// useEffect = () => {
-//   console.log(activeItem)
-// }
-console.log(list.map(item => item.content),)
+  // useEffect = () => {
+  //   console.log(activeItem)
+  // }
+  // console.log(list.map(item => item.content),)
+
+  const unchecked = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMWM2LjA2NSAwIDExIDQuOTM1IDExIDExcy00LjkzNSAxMS0xMSAxMS0xMS00LjkzNS0xMS0xMSA0LjkzNS0xMSAxMS0xMXptMC0xYy02LjYyNyAwLTEyIDUuMzczLTEyIDEyczUuMzczIDEyIDEyIDEyIDEyLTUuMzczIDEyLTEyLTUuMzczLTEyLTEyLTEyeiIvPjwvc3ZnPg=="
+  const checked = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0xMiAwYzYuNjIzIDAgMTIgNS4zNzcgMTIgMTJzLTUuMzc3IDEyLTEyIDEyLTEyLTUuMzc3LTEyLTEyIDUuMzc3LTEyIDEyLTEyem0wIDFjNi4wNzEgMCAxMSA0LjkyOSAxMSAxMXMtNC45MjkgMTEtMTEgMTEtMTEtNC45MjktMTEtMTEgNC45MjktMTEgMTEtMTF6bTcgNy40NTdsLTkuMDA1IDkuNTY1LTQuOTk1LTUuODY1Ljc2MS0uNjQ5IDQuMjcxIDUuMDE2IDguMjQtOC43NTIuNzI4LjY4NXoiLz48L3N2Zz4="
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -31,18 +35,27 @@ console.log(list.map(item => item.content),)
       </form>
       <div id="listContainer">
         {list.map((item) => (
-          <div className="listItem">
+          <div className="listItem" 
+          // onClick={() => handleActiveToggle(item)}
+          >
+            {/* {item.active ? <img
+              onClick={() => handleActiveToggle(item)}
+              src={unchecked}
+            ></img> : <img
+            onClick={() => handleActiveToggle(item)}
+            src={checked}
+          ></img>} */}
             <img
-              onClick={handleActiveToggle}
-              className={"svg" + list.active ? "" : "hidden"}
-              src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMWM2LjA2NSAwIDExIDQuOTM1IDExIDExcy00LjkzNSAxMS0xMSAxMS0xMS00LjkzNS0xMS0xMSA0LjkzNS0xMSAxMS0xMXptMC0xYy02LjYyNyAwLTEyIDUuMzczLTEyIDEyczUuMzczIDEyIDEyIDEyIDEyLTUuMzczIDEyLTEyLTUuMzczLTEyLTEyLTEyeiIvPjwvc3ZnPg=="
+              onClick={() => handleActiveToggle(item)}
+              className={"svg "  + (item.active ? "" : "hidden")}
+              src={unchecked}
             ></img>
             <img
-              onClick={handleActiveToggle}
-              className={"svg" + list.active ? "hidden" : ""}
-              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0xMiAwYzYuNjIzIDAgMTIgNS4zNzcgMTIgMTJzLTUuMzc3IDEyLTEyIDEyLTEyLTUuMzc3LTEyLTEyIDUuMzc3LTEyIDEyLTEyem0wIDFjNi4wNzEgMCAxMSA0LjkyOSAxMSAxMXMtNC45MjkgMTEtMTEgMTEtMTEtNC45MjktMTEtMTEgNC45MjktMTEgMTEtMTF6bTcgNy40NTdsLTkuMDA1IDkuNTY1LTQuOTk1LTUuODY1Ljc2MS0uNjQ5IDQuMjcxIDUuMDE2IDguMjQtOC43NTIuNzI4LjY4NXoiLz48L3N2Zz4="
+              onClick={() => handleActiveToggle(item)}
+              className={"svg " + (item.active ? "hidden" : "")}
+              src={checked}
             ></img>
-            <span>{item.content}</span>
+            <span className={item.active ? "" : "disabled"}>{item.content}</span>
             <img
               className="svg"
               onClick={() => removeItem(item.id)}
