@@ -1,12 +1,25 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 // import { useExample } from '../hooks'
 import { useList } from "../hooks"
 
 export default () => {
-  const { list, setText, removeItem } = useList()
+  const { list, setText, removeItem, toggleItem } = useList()
   const [inputText, setInputText] = useState("")
-  const [activeItem, setActiveItem] = useState(false)
+  // const [activeItem, setActiveItem] = useState(true)
   // const { example, setExample, exampleAsync, list } = useExample()
+
+  function handleActiveToggle() {
+  // console.log(list.map().filter())
+    toggleItem(list.active == !list.active)
+  // e.preventDefault()
+  // return setActiveItem(!activeItem)
+}
+
+// useEffect = () => {
+//   console.log(activeItem)
+// }
+console.log(list.map(item => item.content),)
+
   function handleSubmit(e) {
     e.preventDefault()
     setText(inputText)
@@ -20,11 +33,13 @@ export default () => {
         {list.map((item) => (
           <div className="listItem">
             <img
-              className={"svg"}
+              onClick={handleActiveToggle}
+              className={"svg" + list.active ? "" : "hidden"}
               src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTIgMWM2LjA2NSAwIDExIDQuOTM1IDExIDExcy00LjkzNSAxMS0xMSAxMS0xMS00LjkzNS0xMS0xMSA0LjkzNS0xMSAxMS0xMXptMC0xYy02LjYyNyAwLTEyIDUuMzczLTEyIDEyczUuMzczIDEyIDEyIDEyIDEyLTUuMzczIDEyLTEyLTUuMzczLTEyLTEyLTEyeiIvPjwvc3ZnPg=="
             ></img>
             <img
-              className={"svg"}
+              onClick={handleActiveToggle}
+              className={"svg" + list.active ? "hidden" : ""}
               src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0xMiAwYzYuNjIzIDAgMTIgNS4zNzcgMTIgMTJzLTUuMzc3IDEyLTEyIDEyLTEyLTUuMzc3LTEyLTEyIDUuMzc3LTEyIDEyLTEyem0wIDFjNi4wNzEgMCAxMSA0LjkyOSAxMSAxMXMtNC45MjkgMTEtMTEgMTEtMTEtNC45MjktMTEtMTEgNC45MjktMTEgMTEtMTF6bTcgNy40NTdsLTkuMDA1IDkuNTY1LTQuOTk1LTUuODY1Ljc2MS0uNjQ5IDQuMjcxIDUuMDE2IDguMjQtOC43NTIuNzI4LjY4NXoiLz48L3N2Zz4="
             ></img>
             <span>{item.content}</span>
