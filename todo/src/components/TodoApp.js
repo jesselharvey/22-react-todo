@@ -26,12 +26,24 @@ export default () => {
 
   function handleSubmit(e) {
     e.preventDefault()
+    
     setText(inputText)
+    setInputText("")
   }
+  function handleInput(e) {
+    setInputText(e.target.value)
+
+  }
+  // how do I clear the input  
+
+  // if (handleSubmit()) {
+  //   setInputText("")
+  // }
   return (
-    <div>
+    <div id="todoContainer">
+      <h1>To-do list:</h1>
       <form onSubmit={handleSubmit}>
-        <input type="text" onChange={(e) => setInputText(e.target.value)} />
+        <input value={inputText} type="text"  onChange={handleInput} />
       </form>
       <div id="listContainer">
         {list.map((item) => (
